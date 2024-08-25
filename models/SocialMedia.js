@@ -1,14 +1,19 @@
 const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate-v2');
 
-const socialMediaSchema = new mongoose.Schema({
+const SocialMediaSchema = new mongoose.Schema({
     SocialMediaLink: { type: String, required: true },
     SocialMediaName: { type: String, required: true },
     Description: { type: String },
-}, {
-    timestamps: true,
 });
 
-socialMediaSchema.plugin(mongoosePaginate);
+// Mongoose Paginate eklentisini ekleyin
+SocialMediaSchema.plugin(mongoosePaginate);
 
-module.exports = mongoose.model('SocialMedia', socialMediaSchema);
+// Modeli tanımlayın
+const SocialMedia = mongoose.model('SocialMedia', SocialMediaSchema);
+
+// Metin dizinini oluşturun
+SocialMedia.collection.createIndex({ SocialMediaName: 'text', Description: 'text' });
+
+module.exports = SocialMedia;

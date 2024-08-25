@@ -5,7 +5,6 @@ const morgan = require('morgan');
 const helmet = require('helmet');
 const cors = require('cors');
 const socialMediaRoutes = require('./routes/socialMediaRoutes');
-const socialMediaTypeRoutes = require('./routes/socialMediaTypeRoutes');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -27,7 +26,6 @@ mongoose.connect(process.env.MONGODB_URI)
 
 // Rotalar
 app.use('/socialmedia', socialMediaRoutes);
-app.use('/socialmediatype', socialMediaTypeRoutes);
 
 app.listen(port, () => {
     console.log(`Sunucu http://localhost:${port} adresinde çalışıyor`);
